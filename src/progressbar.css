@@ -1,0 +1,84 @@
+.progressbar-container{
+	margin:0 auto;
+	width: 100%;
+	background-color: var(--breadcrumbs-background);
+	height:80px;
+}
+.progressbar {
+	counter-reset: step;
+	display:flex;
+}
+.progressbar .progressbar-step {
+	position: relative;
+	list-style-type: none;
+	width: 100%;
+	font-size: 14px;
+}
+.progressbar .progressbar-step .progressbar-step-tag {
+	position: absolute;
+	bottom:-40px;
+	text-align:center;
+	width:150px;
+	right: -85px;
+	color : #dbdbdb
+}
+.progressbar .progressbar-step:before {
+	width: 30px;
+	height: 30px;
+	line-height: 30px;
+	content: counter(step);
+	counter-increment: step;
+	background-color: #dbdbdb;
+	color:#b5b5b5;
+	text-align: center;
+	margin: 0 auto;
+	border-radius: 50%;
+	z-index:1;
+	position: absolute;
+	right: -100%;
+	padding: 0;
+	border: 2px solid var(--breadcrumbs-background);
+	font-size:12px
+}
+.progressbar .progressbar-step:after {
+	width: 100%;
+	height: 2px;
+	content: "";
+	position: absolute;
+	background-color:#dbdbdb;
+	top: 1.4em;
+	left:0%;
+	z-index: 0;
+	transition: all 1s ease-in-out;
+}
+.progressbar .progressbar-step:last-child:before {
+	display:none;
+}
+.progressbar .progressbar-step.active:before {
+	background-color: var(--primary-base-color);
+	color: white;
+	transition: all 1s ease-in-out;
+}
+.progressbar .progressbar-step.active:after {
+	background-color: var(--primary-base-color);
+	animation: progressmade 1s ease-in-out;
+}
+.progressbar .progressbar-step.active .progressbar-step-tag {
+	font-weight: bolder;
+	color: #000;
+}
+@keyframes progressmade {
+	0% {
+		width: 100%;
+	}
+	10% {
+		width: 0%;
+	}
+	100% {
+		width: 100%;
+	}
+}
+	
+.progressbar .progressbar-step.complete:before {
+	content: "\2713";
+}
