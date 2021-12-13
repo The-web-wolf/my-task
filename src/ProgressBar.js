@@ -32,16 +32,10 @@ class ProgressBar extends Component {
         const isShipping = this.state.progress.includes("SHIPPING_STEP");
         const isBilling  = this.state.progress.includes("BILLING_STEP");
         const isDetails  = this.state.progress.includes("DETAILS_STEP");
-        let billingComplete, shippingComplete, detailsComplete = '';
-        if (isShipping) {
-            shippingComplete = this.state.progress.length > this.state.progress.indexOf("SHIPPING_STEP") + 1
-        }
-        if (isBilling) {
-            billingComplete = this.state.progress.length > this.state.progress.indexOf("BILLING_STEP") + 1
-        }
-        if (isDetails) {
-            detailsComplete = this.state.progress.length > this.state.progress.indexOf("DETAILS_STEP") + 1
-        }
+        const shippingComplete = isShipping && this.state.progress.length > this.state.progress.indexOf("SHIPPING_STEP") + 1;
+        const billingComplete = isBilling && this.state.progress.length > this.state.progress.indexOf("BILLING_STEP") + 1;
+        const detailsComplete = isDetails && this.state.progress.length > this.state.progress.indexOf("DETAILS_STEP") + 1;
+
 
         return(
             <div className="progressbar-container">   
